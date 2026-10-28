@@ -9,3 +9,7 @@ coverage/
 
 # Private local admin login details
 .admin-credentials*.txt
+
+# Generated Vercel static output and local deployment metadata
+public/
+.vercel/

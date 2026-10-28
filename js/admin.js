@@ -2,6 +2,7 @@
 'use strict';
 (() => {
   const $ = id => document.getElementById(id);
+  let maxUploadBytes = 8 * 1024 * 1024;
   let posts = [], current = null, csrf = '', dirty = false, slugEdited = false, pendingUploads = 0, generation = 0, deleteTarget = null;
   const names = ['title','slug','summary','body','fact','image','alt','imageCaption','imageFit','format','category','status','feedPriority','author','date','updatedDate','authorNote','tags'];
   const input = name => $(name === 'visibility' ? 'post-visibility-input' : 'post-' + name);
@@ -13,8 +14,8 @@
     if (options.method && options.method !== 'GET' && csrf) headers.set('X-CSRF-Token', csrf);
     let response;
     try {response = await fetch(url, { ...options, headers, credentials:'same-origin' });}
-    catch {throw new Error('Could not reach the server. Start it with npm start, then open the admin panel at http://localhost:3000/admin.html.');}
-    if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Open the admin panel through the running Node server at http://localhost:3000/admin.html.');
+    catch {throw new Error('Could not reach the publishing API. Check your connection and server availability.');}
+    if (!response.headers.get('content-type')?.includes('application/json')) throw new Error(`The publishing API returned a non-JSON response (HTTP ${response.status}). This deployment may be missing its backend routes. Redeploy with the Vercel API configuration and check /api/health.`);
     const result = await response.json();
     if (!response.ok) {
       if (response.status===401 && url!=='/api/admin/login' && url!=='/api/admin/session') showLogin('Your session expired. Sign in again to continue.');
@@ -69,7 +70,7 @@
   }
   async function upload(file, target, statusId) {
     if(!file)return;
-    if(file.size>8*1024*1024){feedback(statusId,'Images must be 8 MB or smaller.',true);return;}
+    if(file.size>maxUploadBytes){feedback(statusId,`Images must be ${maxUploadBytes / 1024 / 1024} MB or smaller.`,true);return;}
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)){feedback(statusId,'Choose a JPEG, PNG, or WebP image.',true);return;}
     const started=generation;pendingUploads++;setSaveState();feedback(statusId,'Uploading image…');
     try {const form=new FormData();form.append('image',file);const result=await api('/api/admin/uploads',{method:'POST',body:form});if(started===generation){target.value=result.src;dirty=true;updatePreview();feedback(statusId,'Image uploaded. Save the post to attach it.');await loadMedia();}}
@@ -112,6 +113,8 @@
     generation++;dirty=false;current=null;$('posts-view').hidden=false;$('editor-view').hidden=true;$('show-posts').setAttribute('aria-current','page');$('sidebar-new').removeAttribute('aria-current');window.scrollTo(0,0);
   }
   async function enterWorkspace(session) {
+    maxUploadBytes=session.maxUploadBytes || 8 * 1024 * 1024;
+    $('upload-size-label').textContent=`JPEG, PNG, WebP · up to ${maxUploadBytes / 1024 / 1024} MB`;
     csrf=session.csrf;$('account-email').textContent=session.email;$('login-view').hidden=true;$('workspace').hidden=false;
     try {await Promise.all([loadPosts(),loadMedia()]);}catch(error){feedback('workspace-status',error.message,true);}
   }

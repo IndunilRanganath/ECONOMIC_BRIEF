@@ -3,14 +3,15 @@ import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
 import multer from 'multer';
 import path from 'node:path';
-import { mkdir, writeFile, readdir, access } from 'node:fs/promises';
 import { randomUUID, randomBytes } from 'node:crypto';
 import { ROOT } from './config.js';
+import { createMediaStore } from './media.js';
 import { authentication, sameOrigin, csrfProtection, createSession, cookieOptions, cookieToken, tokenHash, SESSION_COOKIE, hashPassword, verifyPassword } from './auth.js';
 import { validatePost, withoutMongoId, publicPost, HttpError } from './posts.js';
 
 export async function createApp({ db, config }) {
-  await mkdir(config.uploadDir, { recursive: true });
+  const media = await createMediaStore(db, config);
+  const maxUploadBytes = config.maxUploadBytes || 8 * 1024 * 1024;
   const app = express();
   app.disable('x-powered-by');
   if (config.trustProxy) app.set('trust proxy', 1);
@@ -45,9 +46,9 @@ export async function createApp({ db, config }) {
     if (old) await db.collection('sessions').deleteOne({ _id: tokenHash(old) });
     const { token, session } = await createSession(db, admin._id);
     res.cookie(SESSION_COOKIE, token, cookieOptions(config.production));
-    res.json({ email: admin.email, csrf: session.csrf });
+    res.json({ email: admin.email, csrf: session.csrf, maxUploadBytes });
   });
-  app.get('/api/admin/session', requireAdmin, (req, res) => res.json({ email: req.admin.email, csrf: req.session.csrf }));
+  app.get('/api/admin/session', requireAdmin, (req, res) => res.json({ email: req.admin.email, csrf: req.session.csrf, maxUploadBytes }));
   app.post('/api/admin/logout', ...mutation, async (req, res) => {
     await db.collection('sessions').deleteOne({ _id: req.session._id });
     const { maxAge, ...options } = cookieOptions(config.production);
@@ -59,8 +60,7 @@ export async function createApp({ db, config }) {
   });
   async function checkImages(post) {
     for (const image of [post.image, ...post.gallery.map(g => g.src)]) {
-      const filename = image.startsWith('uploads/') ? path.join(config.uploadDir, path.basename(image)) : path.join(ROOT, image);
-      try { await access(filename); } catch { throw new HttpError(400, 'An image is missing. Upload it before saving the post.'); }
+      if (!await media.exists(image)) throw new HttpError(400, 'An image is missing. Upload it before saving the post.');
     }
   }
   app.post('/api/admin/posts', ...mutation, async (req, res) => {
@@ -91,7 +91,7 @@ export async function createApp({ db, config }) {
     // Image files are retained because other posts may reference them.
     res.json({ ok: true });
   });
-  const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 0, parts: 1 } });
+  const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: maxUploadBytes, files: 1, fields: 0, parts: 1 } });
   app.post('/api/admin/uploads', ...mutation, rateLimit({ windowMs: 60000, limit: 30, message: { error: 'Please wait a minute before uploading more images.' } }), upload.single('image'), async (req, res) => {
     const bytes = req.file?.buffer;
     let extension;
@@ -100,15 +100,11 @@ export async function createApp({ db, config }) {
     else if (bytes?.length > 12 && bytes.toString('ascii',0,4) === 'RIFF' && bytes.toString('ascii',8,12) === 'WEBP') extension = 'webp';
     if (!extension) throw new HttpError(400, 'Upload a JPEG, PNG, or WebP image. SVG uploads are not supported.');
     const filename = `${randomUUID()}.${extension}`;
-    await writeFile(path.join(config.uploadDir, filename), bytes, { flag: 'wx' });
+    await media.save(filename, bytes, {jpg:'image/jpeg',png:'image/png',webp:'image/webp'}[extension]);
     res.status(201).json({ src: `uploads/${filename}` });
   });
   app.get('/api/admin/media', requireAdmin, async (req, res) => {
-    const results = [];
-    for (const [dir, prefix] of [[path.join(ROOT, 'assets/images'),'assets/images'], [config.uploadDir,'uploads']]) {
-      for (const name of await readdir(dir)) if (/^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|svg)$/i.test(name)) results.push(`${prefix}/${name}`);
-    }
-    res.json(results);
+    res.json(await media.list());
   });
   app.use('/api', (req,res) => res.status(404).json({ error: 'API endpoint not found.' }));
   app.get('/admin', (req,res) => res.redirect('/admin.html'));
@@ -116,12 +112,13 @@ export async function createApp({ db, config }) {
     app.get(file === 'index.html' ? ['/', '/index.html'] : '/' + file, (req,res) => res.sendFile(path.join(ROOT,file)));
   }
   for (const dir of ['css','js','assets']) app.use('/'+dir, express.static(path.join(ROOT,dir), { dotfiles:'deny', index:false }));
-  app.use('/uploads', express.static(config.uploadDir, { dotfiles:'deny', index:false, setHeaders: res => {res.set('X-Content-Type-Options','nosniff');} }));
+  if (media.inMongo) app.get('/uploads/:filename', (req,res,next) => media.serve(req,res,next).catch(next));
+  else app.use('/uploads', express.static(config.uploadDir, { dotfiles:'deny', index:false, setHeaders: res => {res.set('X-Content-Type-Options','nosniff');} }));
   app.use((req,res) => res.status(404).type('text').send('Page not found.'));
   app.use((error, req, res, next) => {
     if (res.headersSent) return next(error);
     if (error.code === 11000) return res.status(409).json({ error: 'That URL slug already exists. Choose a different slug.' });
-    if (error instanceof multer.MulterError) return res.status(400).json({ error: error.code === 'LIMIT_FILE_SIZE' ? 'Images must be 8 MB or smaller.' : 'Upload one image at a time.' });
+    if (error instanceof multer.MulterError) return res.status(400).json({ error: error.code === 'LIMIT_FILE_SIZE' ? `Images must be ${maxUploadBytes / 1024 / 1024} MB or smaller.` : 'Upload one image at a time.' });
     if (error.type === 'entity.parse.failed') return res.status(400).json({ error:'The request contains invalid JSON.' });
     if (error.type === 'entity.too.large') return res.status(413).json({ error:'This post is too large. Reduce the body text.' });
     res.status(error.status || 500).json({ error: error.status ? error.message : 'The server could not complete the request. Please try again.' });

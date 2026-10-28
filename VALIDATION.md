@@ -88,3 +88,18 @@ Browser verification passed:
 - Desktop/mobile homepage, article reading column, and admin screenshots reviewed. No JavaScript page errors in the public/admin interaction passes.
 
 This does not claim a full accessibility audit or cross-engine browser coverage. Other scripts outside the supplied font subsets use system fallbacks.
+
+## Vercel production API routing — 28 October 2026
+
+Observed the existing deployed `/api/admin/session` endpoint returning HTTP 404 with a Vercel not-found response. Changing APP_ORIGIN alone could not resolve the absent API deployment.
+
+Added an explicit Node Function (`api/index.js`), `vercel.json` rewrites, a public-asset build allowlist, warm MongoDB connection reuse, retryable JSON startup failures, and MongoDB GridFS media storage for the Vercel runtime. Admin API errors no longer send production users to localhost. Runtime image limits are returned to the UI (4 MB on Vercel, 8 MB on a persistent Node host).
+
+Verification:
+
+- `npm test`: **20 tests passed**, including Function JSON failures/recovery, login/session routes, draft/public separation, GridFS upload/download, image retrieval from a second app instance, and post references to durable media.
+- `npm run build:vercel` succeeds. Generated `public/` contains intended pages/assets/fonts and excludes `.env`, private credential files, server source, and the static live-data snapshot endpoint.
+- Chrome admin workflow passed with MongoDB-backed image storage: login, upload, gallery/source editing, save/publish/public rendering/update/delete/logout, and desktop/mobile layouts at five widths, with no JavaScript page errors.
+- Syntax checks passed for the API entry, media store, app changes, and admin script.
+
+These source changes have not been deployed to the user's Vercel project by this session. The user must redeploy the updated source with the production environment variables. Real Vercel routing/build behavior and Atlas access from the deployed Function remain to be verified after that deployment. Existing filesystem-uploaded images are not automatically migrated to GridFS.

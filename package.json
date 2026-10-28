@@ -10,7 +10,8 @@
     "start": "node --env-file-if-exists=.env server/index.js",
     "dev": "node --env-file-if-exists=.env --watch server/index.js",
     "admin:create": "node --env-file-if-exists=.env scripts/create-admin.js",
-    "test": "node --test --test-concurrency=1 tests/*.test.js"
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "build:vercel": "node scripts/build-vercel.js"
   },
   "dependencies": {
     "express": "^5.3.0",
