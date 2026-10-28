@@ -1,0 +1,365 @@
+// Generated from data/articles.json. Do not edit; run python3 scripts/sync-local-data.py.
+window.ARTICLES_LOCAL = [
+  {
+    "id": "economic-experts-2026",
+    "title": "Who Are the Leading Economic Experts in 2026?",
+    "summary": "Meet the economists and financial thinkers helping readers understand inflation, global growth, financial risks, and the forces shaping the world economy.",
+    "category": "Economy",
+    "image": "assets/images/financial-district.jpg",
+    "alt": "Glass towers of a global financial district viewed from street level",
+    "tags": [
+      "economists",
+      "global economy"
+    ],
+    "featured": true,
+    "body": "<h2>Understanding the Economists Shaping Today&#x27;s Global Economy</h2>\n<p>The global economy is constantly changing. Inflation, interest rates, government debt, international conflicts, technological developments, and financial markets all influence the economic future of nations. In this complex environment, economists play an important role in understanding economic trends, identifying risks, and helping governments, businesses, and investors make informed decisions.</p>\n<p>But who are the leading economic experts today, and whose analysis should we follow to understand the present economy and predict future developments?</p>\n<p>There is no single economist who can predict every economic event accurately. However, several influential economists have developed strong reputations for analyzing global economic conditions and financial risks.</p>\n<h2>1. Mohamed El-Erian: Understanding the Global Economy</h2>\n<p>Mohamed El-Erian is one of the most widely followed commentators on the global economy and financial markets. He serves as Chief Economic Advisor at Allianz and as a professor at the Wharton School of the University of Pennsylvania.</p>\n<p>His analysis focuses on inflation, central-bank policies, financial markets, government debt, and global economic uncertainty. His experience at the International Monetary Fund and PIMCO gives him a broad perspective on international finance.</p>\n<p>For readers who want to understand current economic conditions and how global events affect financial markets, El-Erian is an important economist to follow.</p>\n<h2>2. Nouriel Roubini: Analyzing Economic Crises</h2>\n<p>Nouriel Roubini is an economist known for studying financial crises, international finance, and economic risks. He gained international recognition for warning about vulnerabilities that preceded the 2008 global financial crisis.</p>\n<p>His work examines government debt, banking systems, inflation, geopolitical risks, and the possibility of economic recessions.</p>\n<p>Roubini&#x27;s analysis is particularly useful for understanding how financial imbalances develop and why economic crises can occur. However, his forecasts should be evaluated alongside other experts and economic data.</p>\n<h2>3. Ray Dalio: Understanding Long-Term Economic Cycles</h2>\n<p>Ray Dalio is an investor and economic thinker known for explaining long-term debt cycles and the relationship between money, credit, productivity, and economic growth.</p>\n<p>His framework examines how borrowing, interest rates, government policies, and financial imbalances influence the rise and decline of economies.</p>\n<p>Dalio is particularly useful for readers who want to understand the long-term forces shaping countries and global financial systems. His work is an investment-oriented perspective rather than a substitute for academic economic research.</p>\n<h2>4. Alan Greenspan: Lessons from Central Banking</h2>\n<p>Although Alan Greenspan is a former central banker rather than a current economic policymaker, his career remains an important case study in monetary policy.</p>\n<p>He served as Chairman of the United States Federal Reserve from 1987 to 2006, including throughout the 1990s. During his tenure, the Federal Reserve&#x27;s decisions on interest rates and monetary policy attracted worldwide attention.</p>\n<p>Studying Greenspan helps readers understand how central banks attempt to control inflation, support employment, and maintain economic stability. His legacy also raises important questions about financial regulation and the risks that can accumulate during periods of economic expansion.</p>\n<h2>5. Silvana Tenreyro: Economic Research and Forecasting</h2>\n<p>Silvana Tenreyro is an economist whose work focuses on monetary policy, inflation, and macroeconomic analysis. She previously served on the Bank of England&#x27;s Monetary Policy Committee.</p>\n<p>As of October 2026, she serves as the International Monetary Fund&#x27;s Economic Counsellor and Director of its Research Department, leading a major institution&#x27;s economic research and forecasting work.</p>\n<p>The IMF&#x27;s research is valuable because it combines economic data and analysis from countries around the world to assess growth prospects, inflation, debt, and potential economic risks.</p>\n<h2>What Is the Global Economic Outlook?</h2>\n<p>Economic forecasts are most useful when they are supported by data rather than individual opinions.</p>\n<p>The International Monetary Fund&#x27;s October 2026 outlook projects global economic growth of 3.1% in 2026 and 3.4% in 2027. Its assessment highlights the effects of higher energy and commodity prices, geopolitical uncertainty, and technology-related investment.</p>\n<p>These figures are forecasts, not guaranteed outcomes. Actual growth may differ as economic conditions change.</p>\n<p>To understand the global economy, readers should monitor several key indicators:</p>\n<ul><li><strong>GDP growth:</strong> Measures the expansion or contraction of economic activity.</li><li><strong>Inflation:</strong> Shows how quickly the general level of prices is increasing.</li><li><strong>Interest rates:</strong> Influence borrowing, spending, saving, and investment.</li><li><strong>Government debt:</strong> Helps indicate fiscal pressures and the cost of public borrowing.</li><li><strong>Employment:</strong> Reveals the strength of the labour market.</li><li><strong>Exchange rates:</strong> Affect international trade, imports, exports, and foreign investment.</li><li><strong>Energy prices:</strong> Influence production costs, transportation, and household expenses.</li></ul>\n<p>No single indicator can explain the entire economy. The strongest analysis considers how these factors interact.</p>\n<h2>Who Is the Best Economist to Follow?</h2>\n<p>The answer depends on the question being asked.</p>\n<p>For current global economic analysis, Mohamed El-Erian is a strong choice. For financial-crisis risks, Nouriel Roubini offers a useful perspective. For long-term debt cycles, Ray Dalio provides an accessible framework. For central-bank policy, Alan Greenspan&#x27;s experience offers valuable historical lessons.</p>\n<p>However, relying on one economist can lead to a limited understanding of the world. Economists may disagree because they use different assumptions, models, data, and interpretations of risk.</p>\n<p>A better approach is to compare expert analysis with reports from institutions such as the International Monetary Fund, the World Bank, and the Organisation for Economic Co-operation and Development.</p>\n<h2>Conclusion</h2>\n<p>Understanding the economy is not simply about predicting whether markets will rise or fall. It requires examining the forces that drive economic growth, inflation, employment, debt, investment, and international trade.</p>\n<p>The most useful economic expert is not necessarily the person who makes the boldest prediction. It is someone whose reasoning can be examined, whose forecasts can be tested against actual outcomes, and whose analysis helps people make better-informed decisions.</p>\n<p>By following experienced economists, studying reliable economic data, and comparing different viewpoints, readers can develop a clearer understanding of today&#x27;s economy and prepare more thoughtfully for tomorrow&#x27;s challenges.</p>\n<p><strong>The key lesson is simple: do not depend on one prediction. Understand the evidence, compare perspectives, and think critically about the future.</strong></p>",
+    "sources": [],
+    "slug": "economic-experts-2026",
+    "author": "Publication owner",
+    "date": null,
+    "updatedDate": null,
+    "demo": false,
+    "readingTime": 5,
+    "status": "review-pending",
+    "authorNote": "Article supplied by the publication owner. No professional credentials are claimed.",
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 100
+  },
+  {
+    "id": "global-economic-growth",
+    "title": "What Drives Global Economic Growth?",
+    "summary": "Beyond the headline number: productivity, investment, and the institutions that shape long-term prosperity.",
+    "category": "Economy",
+    "image": "assets/images/business.jpg",
+    "alt": "A reader holding a business newspaper",
+    "tags": [
+      "growth",
+      "productivity",
+      "global economy"
+    ],
+    "body": "<h2>Looking beyond the growth headline</h2><p>Economic growth describes an expansion in output. Understanding what supports that expansion requires a closer look at labour, capital, productivity, and the institutions that connect them.</p><p>For readers, the useful question is not simply whether activity is rising. It is whether an economy is developing the capacity to sustain improvements in living standards.</p><h2>Productivity and investment</h2><p>Investment can equip workers with better tools, while skills and improved processes can help them use those tools effectively. These changes take time, and their benefits may be distributed unevenly.</p><blockquote>A useful reading habit: ask what is changing beneath the aggregate number.</blockquote><h2>Reading growth with care</h2><ul><li>Distinguish changes in total output from changes in output per person.</li><li>Check whether figures account for price changes.</li><li>Consider the time horizon and the uncertainty around estimates.</li></ul><p>The IMF’s introduction to structural policies provides a foundation for understanding how reforms, productivity, and economic performance interact.</p>",
+    "sources": [
+      [
+        "IMF: Structural policies",
+        "https://www.imf.org/external/pubs/ft/fandd/basics/24_strucutral-policies.htm"
+      ]
+    ],
+    "slug": "global-economic-growth",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 50
+  },
+  {
+    "id": "inflation-interest-rates",
+    "title": "Understanding Inflation and Interest Rates",
+    "summary": "How the cost of money influences households, businesses, and the wider economy.",
+    "category": "Markets",
+    "image": "assets/images/markets.jpg",
+    "alt": "A laptop displaying financial charts and an analytics dashboard",
+    "tags": [
+      "inflation",
+      "interest rates",
+      "central banks"
+    ],
+    "body": "<h2>The price of borrowing</h2><p>Interest rates affect the cost of credit and the return on savings. Central banks use policy rates as one tool to influence financial conditions, though the transmission to individual loans and spending decisions is neither immediate nor uniform.</p><h2>How policy reaches the economy</h2><p>The Federal Reserve explains that changes in its target range for the federal funds rate influence other interest rates and broader financial conditions. Higher borrowing costs can restrain demand; lower costs can support it.</p><h3>Why the timing matters</h3><p>A household renewing a loan and a business holding long-term fixed-rate debt may experience a policy change at different times. Expectations also influence longer-term borrowing costs.</p><h2>Questions to ask</h2><ol><li>Is the discussion about a policy rate or a market rate?</li><li>Does the figure account for inflation?</li><li>Which borrowers are exposed, and when?</li></ol><p>This conceptual guide does not report a current policy decision or forecast the next one.</p>",
+    "sources": [
+      [
+        "Federal Reserve: Monetary policy explained",
+        "https://www.federalreserve.gov/aboutthefed/fedexplained/monetary-policy.htm"
+      ]
+    ],
+    "slug": "inflation-interest-rates",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "five-economic-indicators",
+    "title": "Five Economic Indicators Every Investor Should Understand",
+    "summary": "A practical reading list for making sense of growth, prices, employment, and market expectations.",
+    "category": "Investing",
+    "image": "assets/images/markets.jpg",
+    "alt": "Financial charts displayed on a laptop screen",
+    "tags": [
+      "indicators",
+      "financial education"
+    ],
+    "body": "<h2>A framework for reading the data</h2><p>No single release tells the whole economic story. An educational reading list can help organise questions without turning each data point into a trading signal.</p><h2>Five places to begin</h2><div class=\"table-wrap\"><table><caption>Questions for interpreting economic releases</caption><thead><tr><th>Indicator</th><th>Question to ask</th></tr></thead><tbody><tr><td>Gross domestic product</td><td>Is output expanding after accounting for prices?</td></tr><tr><td>Consumer prices</td><td>Which prices are changing, and over what period?</td></tr><tr><td>Employment</td><td>How broad is labour market participation?</td></tr><tr><td>Interest rates</td><td>What does borrowing cost at different maturities?</td></tr><tr><td>Business investment</td><td>Are firms expanding future productive capacity?</td></tr></tbody></table></div><h2>Context before conclusions</h2><p>Check definitions, revisions, seasonal adjustments, and publication dates at the original statistical source. Compare related measures rather than assuming one number provides a complete investment thesis.</p><p>This is general financial education, not a recommendation to buy or sell any asset.</p>",
+    "sources": [
+      [
+        "IMF: Back to Basics",
+        "https://www.elibrary.imf.org/page/basics/back-to-basics"
+      ]
+    ],
+    "slug": "five-economic-indicators",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 70
+  },
+  {
+    "id": "ai-reshaping-business",
+    "title": "How Artificial Intelligence Is Reshaping Business",
+    "summary": "Looking past the excitement to the practical questions of adoption, judgment, and value.",
+    "category": "Technology",
+    "image": "assets/images/technology.jpg",
+    "alt": "Earth at night with illuminated cities and connected regions",
+    "tags": [
+      "artificial intelligence",
+      "business",
+      "innovation"
+    ],
+    "body": "<h2>From possibility to practice</h2><p>For a business considering AI, a useful starting point is a specific workflow: what task needs improvement, who reviews the output, and how will success be measured? This demonstration offers a decision framework rather than a claim about adoption rates.</p><h2>Three questions for business leaders</h2><ul><li>Can the result be evaluated reliably?</li><li>What data would the system handle?</li><li>Who remains responsible for the final decision?</li></ul><p>A limited pilot with explicit evaluation criteria can make the discussion more concrete. Teams should consider errors, review time, data permissions, and operating costs alongside potential benefits.</p><h2>Measuring useful change</h2><p>Choose a baseline before a trial begins. Compare quality and total effort over the same type of task, and record where human judgment remains essential. A convincing demonstration is not the same as a dependable process.</p>",
+    "sources": [],
+    "slug": "ai-reshaping-business",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "image",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 90
+  },
+  {
+    "id": "government-debt-growth",
+    "title": "The Relationship Between Government Debt and Economic Growth",
+    "summary": "Why the purpose, cost, and structure of borrowing matter as much as its size.",
+    "category": "Economy",
+    "image": "assets/images/financial-district.jpg",
+    "alt": "Modern office towers rising above a financial district",
+    "tags": [
+      "government debt",
+      "fiscal policy"
+    ],
+    "body": "<h2>A relationship with context</h2><p>Debt is a financing tool, and its economic implications depend on how it is used, what it costs, and how an economy develops. A ratio on its own cannot explain all of those conditions.</p><h2>Borrowing costs and resilience</h2><p>The IMF’s discussion of a high-debt, slow-growth world examines the fiscal and financial vulnerabilities associated with debt burdens and financing conditions. It provides context rather than a universal threshold for every country.</p><h2>A better set of questions</h2><ul><li>What does the borrowing finance?</li><li>When does the debt mature?</li><li>In which currency is it issued?</li><li>How sensitive is the budget to financing costs?</li></ul><p>Comparisons should account for institutions, growth prospects, and the composition of liabilities. This demonstration does not assess the creditworthiness of any government.</p>",
+    "sources": [
+      [
+        "IMF: Fiscal and financial risks of a high-debt, slow-growth world",
+        "https://www.imf.org/en/blogs/articles/2024/03/28/the-fiscal-and-financial-risks-of-a-high-debt-slow-growth-world"
+      ]
+    ],
+    "slug": "government-debt-growth",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "business-decision-making",
+    "title": "The Case for Slower, Better Business Decisions",
+    "summary": "A considered approach to uncertainty, evidence, and the decisions that deserve more time.",
+    "category": "Business",
+    "image": "assets/images/business.jpg",
+    "alt": "A reader studying a business newspaper",
+    "tags": [
+      "decision making"
+    ],
+    "body": "<h2>Give the decision a clear shape</h2><p>Before collecting more information, write down the choice, the deadline, and the people affected. This editorial framework starts with clarity about the decision itself.</p><h2>Make assumptions visible</h2><p>Record what the team knows, what it expects, and what could change its mind. Invite someone to examine the strongest competing explanation before resources are committed.</p><h2>Build in a review</h2><p>Agree on a point at which to revisit the decision. Evaluating the reasoning as well as the outcome can help a team learn without pretending that every uncertainty was predictable.</p>",
+    "sources": [],
+    "slug": "business-decision-making",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "entrepreneurship-first-questions",
+    "title": "Before the Business Plan, Ask Better Questions",
+    "summary": "Start with the customer problem, then test the assumptions behind the opportunity.",
+    "category": "Entrepreneurship",
+    "image": "assets/images/business.jpg",
+    "alt": "A business newspaper held open by a reader",
+    "tags": [
+      "entrepreneurship"
+    ],
+    "body": "<h2>Begin with a problem</h2><p>Describe the customer’s difficulty in plain language. A product idea becomes easier to evaluate when the problem it addresses is specific.</p><h2>Test a small assumption</h2><p>A conversation, a prototype, or a limited trial can help explore whether the proposed approach is useful. Define what would count as evidence against the idea as well as evidence for it.</p><h2>Keep a decision journal</h2><p>Separate observations from interpretations. Document the next question to answer and the smallest practical step that could help answer it.</p>",
+    "sources": [],
+    "slug": "entrepreneurship-first-questions",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "personal-finance-foundations",
+    "title": "Building a More Thoughtful Relationship with Money",
+    "summary": "A practical framework for reflecting on goals, commitments, and financial uncertainty.",
+    "category": "Personal Finance",
+    "image": "assets/images/markets.jpg",
+    "alt": "A laptop displaying financial data and charts",
+    "tags": [
+      "personal finance"
+    ],
+    "body": "<h2>Start with your commitments</h2><p>A financial review can begin with a simple inventory of regular spending, obligations, and goals. The aim of this educational framework is to support reflection rather than prescribe a specific product or allocation.</p><h2>Plan around uncertainty</h2><p>Consider which expenses are predictable and which could arrive unexpectedly. Write down the trade-offs between access to cash, long-term goals, and flexibility.</p><h2>Ask for appropriate help</h2><p>Individual circumstances, taxes, and regulations differ. Where a decision requires professional advice, seek a qualified adviser who can consider your situation. This article provides no individualized recommendation.</p>",
+    "sources": [],
+    "slug": "personal-finance-foundations",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "big-picture",
+    "title": "Understanding the Forces Behind the Global Economy",
+    "summary": "Step back from the daily headlines to consider how policy, productivity, and expectations connect.",
+    "category": "Opinion",
+    "image": "assets/images/financial-district.jpg",
+    "alt": "Glass financial district towers seen from below",
+    "tags": [
+      "global economy"
+    ],
+    "body": "<h2>Look for the connections</h2><p>Our editorial view is that the most useful economic reading connects the immediate story to a broader question. A policy announcement may invite questions about expectations; an investment decision may invite questions about productive capacity.</p><h2>Hold more than one explanation</h2><p>Analysis becomes more useful when it makes uncertainty explicit. Ask which assumptions support an interpretation, and what evidence might weaken it.</p><h2>Read with a longer horizon</h2><p>We favour a reading habit that combines original sources, clear definitions, and patience. This is an editorial perspective, offered as an invitation to thoughtful inquiry rather than a forecast.</p>",
+    "sources": [],
+    "slug": "big-picture",
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "featured": false,
+    "format": "article",
+    "imageCaption": "Illustrative photograph · Unsplash",
+    "imageFit": "cover",
+    "gallery": [],
+    "feedPriority": 0
+  },
+  {
+    "id": "forecasts-not-guarantees",
+    "slug": "forecasts-not-guarantees",
+    "title": "A forecast is not a guarantee.",
+    "summary": "Economic forecasts can change as conditions change. Compare the evidence, assumptions, and possible outcomes.",
+    "category": "Economy",
+    "image": "assets/images/forecasts-not-guarantees.svg",
+    "alt": "A forecast is not a guarantee. Compare the evidence. Consider the uncertainty.",
+    "tags": [
+      "Forecasts",
+      "quick facts"
+    ],
+    "featured": false,
+    "body": "<h2>The idea, simply</h2><p>Economic forecasts can change as conditions change. Compare the evidence, assumptions, and possible outcomes.</p><p>This educational graphic draws on the owner-supplied article about economic experts. It is a reading principle, not a current news report.</p><p><a href=\"article.html?slug=economic-experts-2026\">Read the full context: Who Are the Leading Economic Experts in 2026?</a></p>",
+    "sources": [],
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "format": "fact",
+    "fact": "Economic forecasts can change as conditions change. Compare the evidence, assumptions, and possible outcomes.",
+    "imageCaption": "Original educational graphic · The Economic Brief",
+    "imageFit": "contain",
+    "gallery": [],
+    "feedPriority": 80
+  },
+  {
+    "id": "read-the-whole-picture",
+    "slug": "read-the-whole-picture",
+    "title": "One indicator. Never the whole picture.",
+    "summary": "Growth, inflation, employment, interest rates, debt, exchange rates, and energy prices are more useful when read together.",
+    "category": "Investing",
+    "image": "assets/images/read-the-whole-picture.svg",
+    "alt": "One indicator. Never the whole picture. Context makes the numbers meaningful.",
+    "tags": [
+      "Economic indicators",
+      "quick facts"
+    ],
+    "featured": false,
+    "body": "<h2>The idea, simply</h2><p>Growth, inflation, employment, interest rates, debt, exchange rates, and energy prices are more useful when read together.</p><p>This educational graphic draws on the owner-supplied article about economic experts. It is a reading principle, not a current news report.</p><p><a href=\"article.html?slug=economic-experts-2026\">Read the full context: Who Are the Leading Economic Experts in 2026?</a></p>",
+    "sources": [],
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "format": "fact",
+    "fact": "Growth, inflation, employment, interest rates, debt, exchange rates, and energy prices are more useful when read together.",
+    "imageCaption": "Original educational graphic · The Economic Brief",
+    "imageFit": "contain",
+    "gallery": [],
+    "feedPriority": 60
+  },
+  {
+    "id": "compare-perspectives",
+    "slug": "compare-perspectives",
+    "title": "Better questions. Broader perspectives.",
+    "summary": "Compare different viewpoints and examine the reasoning behind a prediction before drawing a conclusion.",
+    "category": "Opinion",
+    "image": "assets/images/compare-perspectives.svg",
+    "alt": "Better questions. Broader perspectives. Understand the evidence. Think critically.",
+    "tags": [
+      "Critical thinking",
+      "quick facts"
+    ],
+    "featured": false,
+    "body": "<h2>The idea, simply</h2><p>Compare different viewpoints and examine the reasoning behind a prediction before drawing a conclusion.</p><p>This educational graphic draws on the owner-supplied article about economic experts. It is a reading principle, not a current news report.</p><p><a href=\"article.html?slug=economic-experts-2026\">Read the full context: Who Are the Leading Economic Experts in 2026?</a></p>",
+    "sources": [],
+    "author": "The Economic Brief editorial desk",
+    "date": null,
+    "updatedDate": null,
+    "demo": true,
+    "readingTime": 1,
+    "format": "fact",
+    "fact": "Compare different viewpoints and examine the reasoning behind a prediction before drawing a conclusion.",
+    "imageCaption": "Original educational graphic · The Economic Brief",
+    "imageFit": "contain",
+    "gallery": [],
+    "feedPriority": 40
+  }
+];
