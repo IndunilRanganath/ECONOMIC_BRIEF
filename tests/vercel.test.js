@@ -3,13 +3,39 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import path from 'node:path';
 import os from 'node:os';
-import { readFile, access } from 'node:fs/promises';
+import { readFile, access, mkdtemp, mkdir, copyFile, writeFile, rm } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { getConfig } from '../server/config.js';
 import { connectDatabase } from '../server/database.js';
 import { createApp } from '../server/app.js';
 import { hashPassword } from '../server/auth.js';
 import { ROOT } from '../server/config.js';
+
+test('a missing deployed server module returns a safe JSON diagnostic instead of crashing during import', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'brief-function-import-'));
+  try {
+    await mkdir(path.join(directory, 'api'));
+    await mkdir(path.join(directory, 'server'));
+    await writeFile(path.join(directory, 'package.json'), '{"type":"module"}');
+    await copyFile(path.join(ROOT, 'api/index.js'), path.join(directory, 'api/index.js'));
+    await copyFile(path.join(ROOT, 'server/startup-error.js'), path.join(directory, 'server/startup-error.js'));
+    // Deliberately omit the server modules to reproduce an incomplete function bundle.
+    const { default: handler } = await import(pathToFileURL(path.join(directory, 'api/index.js')).href);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const headers = {};
+      const response = { setHeader(name, value) { headers[name] = value; }, end(body) { this.body = body; } };
+      await handler({}, response);
+      assert.equal(response.statusCode, 503);
+      assert.match(headers['Content-Type'], /application\/json/);
+      assert.equal(headers['Cache-Control'], 'no-store');
+      assert.match(JSON.parse(response.body).error, /server dependency/);
+      assert(!response.body.includes(directory));
+    }
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
 
 test('Vercel defaults avoid filesystem writes and cap proxied image uploads',()=>{
   const config=getConfig({MONGODB_URI:'mongodb://127.0.0.1:27017',VERCEL:'1',NODE_ENV:'production',APP_ORIGIN:'https://economicbrife.vercel.app'});

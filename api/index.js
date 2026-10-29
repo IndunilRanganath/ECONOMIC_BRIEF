@@ -1,11 +1,15 @@
-import { getConfig } from '../server/config.js';
-import { connectDatabase, importInitialPosts } from '../server/database.js';
-import { createApp } from '../server/app.js';
 import { startupErrorMessage } from '../server/startup-error.js';
 
 // Reuse the connection pool and Express app across warm function invocations.
 let runtime;
 async function initialize() {
+  // Load dependencies inside the guarded initialization. Module-load failures
+  // otherwise crash the function before handler() can return a JSON diagnostic.
+  const [{ getConfig }, { connectDatabase, importInitialPosts }, { createApp }] = await Promise.all([
+    import('../server/config.js'),
+    import('../server/database.js'),
+    import('../server/app.js'),
+  ]);
   const config = getConfig();
   const { client, db } = await connectDatabase(config);
   try {
@@ -15,7 +19,12 @@ async function initialize() {
 }
 export default async function handler(req, res) {
   try {
-    if (!runtime) runtime = initialize().catch(error => { runtime = undefined; throw error; });
+    if (!runtime) runtime = initialize().catch(error => {
+      runtime = undefined;
+      // Driver messages/stacks may contain credentials; log only safe categories.
+      console.error('API initialization failed', { name: error.name, code: error.code });
+      throw error;
+    });
     const { app } = await runtime;
     return app(req, res);
   } catch (error) {
