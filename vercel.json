@@ -3,6 +3,9 @@
   "framework": null,
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "public",
+  "env": {
+    "NODE_OPTIONS": "--experimental-require-module"
+  },
   "functions": {
     "api/index.js": {
       "includeFiles": "{server/**,data/articles.json,assets/images/**}",

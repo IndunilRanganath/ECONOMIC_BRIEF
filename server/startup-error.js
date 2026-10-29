@@ -1,6 +1,9 @@
 // Do not log driver messages: they can contain connection details.
 export function startupErrorMessage(error) {
-  if (['ERR_MODULE_NOT_FOUND', 'MODULE_NOT_FOUND', 'ERR_PACKAGE_PATH_NOT_EXPORTED', 'ERR_REQUIRE_ESM'].includes(error.code)) {
+  if (error.code === 'ERR_REQUIRE_ESM') {
+    return 'The API requires Node.js 24 and NODE_OPTIONS=--experimental-require-module on Vercel. Deploy the committed vercel.json, check for conflicting NODE_OPTIONS in project settings, and redeploy.';
+  }
+  if (['ERR_MODULE_NOT_FOUND', 'MODULE_NOT_FOUND', 'ERR_PACKAGE_PATH_NOT_EXPORTED'].includes(error.code)) {
     return 'The API could not load a server dependency. Check Vercel Function logs and redeploy from the repository root with npm ci and the committed package-lock.json.';
   }
   if (error.name === 'ConfigurationError') return error.message;

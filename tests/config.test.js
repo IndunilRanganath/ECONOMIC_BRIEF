@@ -30,3 +30,8 @@ test('startup errors distinguish DNS, permissions, and network access', () => {
   assert.match(startupErrorMessage({code:13}),/read\/write permissions/);
   assert.match(startupErrorMessage({name:'MongoServerSelectionError'}),/Network Access/);
 });
+test('ESM loading failures identify the Vercel runtime option without exposing module paths', () => {
+  const message = startupErrorMessage({ code: 'ERR_REQUIRE_ESM', message: 'Private module path' });
+  assert.match(message, /NODE_OPTIONS=--experimental-require-module/);
+  assert(!message.includes('Private module path'));
+});

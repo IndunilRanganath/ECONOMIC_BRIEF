@@ -4,7 +4,7 @@ An image-led publishing site with a password-protected admin panel and MongoDB s
 
 ## Run with MongoDB Atlas
 
-Requires Node.js 22.9+ (Node 24 recommended), npm, and your MongoDB Atlas database.
+Requires Node.js 24, npm, and your MongoDB Atlas database.
 
 1. In Atlas, create a deployment, create a database user with access to your `economic_brief` database, and allow your server/development IP under Network Access. Copy the **Drivers / Node.js connection string**. Follow the [official Atlas connection guide](https://www.mongodb.com/docs/drivers/node/current/get-started/).
 2. From this project folder:
@@ -170,7 +170,7 @@ Photographs are local illustrative assets originally retrieved from Unsplash end
 The backend must be deployed along with the HTML. Changing `APP_ORIGIN` cannot create missing API routes. The project now includes `api/index.js`, `vercel.json`, and `npm run build:vercel` for this purpose.
 
 1. Push the updated source, including the new `api/`, `server/media.js`, `scripts/build-vercel.js`, and `vercel.json` files, to the Git repository connected to Vercel.
-2. In the Vercel project, use the repository root as **Root Directory**. Use **Other** for the framework preset. The committed configuration sets **Build Command** to `npm run build:vercel` and **Output Directory** to `public`; remove conflicting dashboard overrides. Do not use `npm start` as a build command.
+2. In the Vercel project, use the repository root as **Root Directory**. Use **Other** for the framework preset and **24.x** for Node.js (also pinned in `package.json`). The committed configuration sets **Build Command** to `npm run build:vercel` and **Output Directory** to `public`; remove conflicting dashboard overrides. Do not use `npm start` as a build command.
 3. Configure Production environment variables in Vercel:
 
    ```dotenv
@@ -186,6 +186,8 @@ The backend must be deployed along with the HTML. Changing `APP_ORIGIN` cannot c
 5. Check `https://economicbrife.vercel.app/api/health`. A configured backend returns `{"ok":true}`. `/api/admin/session` should return a JSON `401` before login. A JSON `503` explains a configuration or Atlas connection failure; a platform `404` means the Function/routing has not been deployed correctly.
 
 If Vercel returns a plain-text `500` with `FUNCTION_INVOCATION_FAILED`, open **Project → Logs** and select that failed request. The browser's “non-JSON response” message does not identify the server exception. Dependency imports now run inside guarded initialization, so missing server dependencies return a JSON `503` and log their error name/code without credentials. For a dependency-load error, ensure Vercel installs dependencies with `npm ci` from the repository root using the committed `package.json` and `package-lock.json`, then redeploy. If the response is still a platform `500`, use the exception in the Function log to investigate runtime loading; changing the admin password or `APP_ORIGIN` will not diagnose that failure.
+
+For `ERR_REQUIRE_ESM` mentioning `sanitize-html` and `htmlparser2`, the sanitizer uses CommonJS `require()` to load its ESM parser. Vercel disables that interoperability by default even on modern Node. The committed `vercel.json` enables it with `NODE_OPTIONS=--experimental-require-module`, as described in [Vercel's Node.js documentation](https://vercel.com/docs/functions/runtimes/node-js/advanced-node-configuration#experimental-nodejs-require-of-es-module). If `NODE_OPTIONS` is also set in the dashboard, remove a conflicting override or include this flag there. Redeploy for runtime settings to take effect. If Vercel still reports an ESM/bytecode loading error, set `VERCEL_USE_BYTECODE_CACHING=0` in the project's environment variables and redeploy without the build cache to regenerate the runtime artifacts.
 
 The build creates `public/` from an explicit allowlist of pages and asset folders; it does not publish `.env`, admin passwords, server source, or arbitrary files from the project root. Rewrites route `/api/*`, `/uploads/*`, and `/data/articles.json` to the Node function. Its MongoDB pool is reused for warm requests, and initialization failures remain retryable and return JSON. The original `npm start` workflow continues to work locally.
 
