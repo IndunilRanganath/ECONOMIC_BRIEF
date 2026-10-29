@@ -14,7 +14,10 @@ export async function connectDatabase(config) {
       db.collection('sessions').createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
     ]);
     return { client, db };
-  } catch (error) { await client.close(); throw error; }
+  } catch (error) {
+    await client.close();
+    throw error;
+  }
 }
 export async function importInitialPosts(db) {
   // A migration marker prevents deleted posts from reappearing after restart.
@@ -22,9 +25,23 @@ export async function importInitialPosts(db) {
   if (await marker.findOne({ _id: 'json-import-v1' })) return;
   const posts = JSON.parse(await readFile(path.join(ROOT, 'data/articles.json'), 'utf8'));
   for (const post of posts) {
-    await db.collection('posts').updateOne({ id: post.id }, { $setOnInsert: {
-      ...post, visibility: 'published', revision: 1, createdAt: new Date(), modifiedAt: new Date(),
-    } }, { upsert: true });
+    await db.collection('posts').updateOne(
+      { id: post.id },
+      {
+        $setOnInsert: {
+          ...post,
+          visibility: 'published',
+          revision: 1,
+          createdAt: new Date(),
+          modifiedAt: new Date(),
+        },
+      },
+      { upsert: true },
+    );
   }
-  await marker.updateOne({ _id: 'json-import-v1' }, { $set: { completedAt: new Date() } }, { upsert: true });
+  await marker.updateOne(
+    { _id: 'json-import-v1' },
+    { $set: { completedAt: new Date() } },
+    { upsert: true },
+  );
 }

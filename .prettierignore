@@ -1,0 +1,6 @@
+node_modules/
+public/
+uploads/
+package-lock.json
+# Generated static article snapshot; update using scripts/sync-local-data.py.
+js/articles-local.js

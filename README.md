@@ -101,7 +101,12 @@ Removing a post does not delete its images, because other posts may reference th
 ```sh
 npm run dev
 npm test
+npm run format:check
 ```
+
+Run `npm run format` to format application JavaScript, scripts, tests, and root JSON configuration. Prettier's rules live in `.prettierrc.json`; generated article snapshots and deployment output are excluded in `.prettierignore`.
+
+`server/app.js` assembles middleware and registers route modules in `server/routes/`. Authentication, posts, media uploads, and public pages have separate modules. API errors are handled in `server/middleware/error-handler.js`; expected validation errors use the independent `HttpError` class. Both the local server and Vercel initialize the app through `server/runtime.js`. Keep Vercel's import inside its startup guard so dependency-load failures still produce safe diagnostics. The local server and deployment build share their public-file allowlist in `server/public-files.js`.
 
 Development uses Node's built-in watch mode. Tests use the real MongoDB driver with an isolated `mongodb-memory-server` instance, not your Atlas database. The first test run downloads a MongoDB binary into a temporary cache and requires network access. The test suite checks authentication, CSRF/origin protection, private-route denial, image uploads, validation, sanitized content, unique slugs, draft/public separation, optimistic updates, deletion, logout, and migration behavior.
 
@@ -146,6 +151,11 @@ server/database.js              MongoDB connection, indexes, import
 server/auth.js                  Passwords, sessions, CSRF, origins
 server/posts.js                 Post validation and HTML sanitization
 server/app.js                   API routes, uploads, static allowlist
+server/routes/                  Authentication, posts, media, and website routes
+server/middleware/error-handler.js  Shared API error responses
+server/http-error.js            Expected HTTP errors
+server/runtime.js               Shared application/database initialization
+server/public-files.js          Public-file allowlist for server and build
 server/index.js                 Startup and graceful shutdown
 scripts/create-admin.js         Interactive admin creation/reset
 scripts/sync-local-data.py      Optional direct-file snapshot helper

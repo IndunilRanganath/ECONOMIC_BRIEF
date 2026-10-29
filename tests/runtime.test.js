@@ -8,8 +8,14 @@ test('Vercel runtime options load the sanitizer when require(ESM) starts disable
   const deployment = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
   const options = deployment.env.NODE_OPTIONS.split(/\s+/);
   // Reproduce the platform default, then apply the configured opt-in.
-  const child = spawnSync(process.execPath, [
-    '--no-experimental-require-module', ...options, '--input-type=module', '-e', `
+  const child = spawnSync(
+    process.execPath,
+    [
+      '--no-experimental-require-module',
+      ...options,
+      '--input-type=module',
+      '-e',
+      `
       import assert from 'node:assert/strict';
       import { validatePost } from './server/posts.js';
       const post = validatePost({
@@ -20,6 +26,12 @@ test('Vercel runtime options load the sanitizer when require(ESM) starts disable
       });
       assert.equal(post.body, '<p>Safe text</p>');
     `,
-  ], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, NODE_OPTIONS: deployment.env.NODE_OPTIONS } });
+    ],
+    {
+      cwd: ROOT,
+      encoding: 'utf8',
+      env: { ...process.env, NODE_OPTIONS: deployment.env.NODE_OPTIONS },
+    },
+  );
   assert.equal(child.status, 0, child.stderr || child.error?.message);
 });
